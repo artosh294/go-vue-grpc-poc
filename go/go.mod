@@ -1,4 +1,4 @@
-module github.com/artosh294/grpc-scratchpads/grpc-poc/go
+module github.com/artosh294/go-vue-grpc-poc
 
 go 1.15
 
