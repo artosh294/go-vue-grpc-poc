@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+
+  proxy:
+    image: envoyproxy/envoy:v1.15-latest
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./envoy/envoy.yaml:/etc/envoy.yaml
+    command: /usr/local/bin/envoy -c /etc/envoy.yaml
+    networks:
+      backend:
+
+  grpc-server:
+    image: golang:latest
+    volumes:
+      - ../../go:/go/src/work
+      # 依存パッケージはローカルボリュームに格納する
+      - grpc-server-volume:/go/pkg
+    ports:
+      - "50051:50051"
+    working_dir: /go/src/work
+    command: go run cmd/server/server.go
+    networks:
+      backend:
+
+networks:
+  backend:
+
+volumes:
+  grpc-server-volume:
+    driver: local

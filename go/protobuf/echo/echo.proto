@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "github.com/artosh294/grpc-scratchpads/grpc-poc/go/protobuf/echo";
+
+package echo;
+
+
+service Echo {
+    rpc Echo(EchoRequest) returns (EchoResponse) {}
+}
+
+message EchoRequest {
+    string name = 1;
+}
+
+message EchoResponse {
+    string message = 1;
+}
