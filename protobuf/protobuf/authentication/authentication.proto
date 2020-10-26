@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option go_package = "github.com/artosh294/go-vue-grpc-poc/go/protobuf/authentication";
+
+package authentication;
+
+
+service Authentication {
+    rpc Login(LoginRequest) returns (LoginResponse) {}
+    rpc RefreshAccessToken(RefreshAccessTokenRequest) returns(RefreshAccessTokenResponse) {}
+}
+
+message LoginRequest {
+    string loginId = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string accessToken = 1;
+    int32 accessTokenExpiresIn = 2;
+    string refreshToken = 3;
+    int32 refreshTokenExpiresIn = 4;
+}
+
+message RefreshAccessTokenRequest {
+    string refreshToken = 1;
+}
+
+message RefreshAccessTokenResponse {
+    string accessToken = 1;
+    int32 accessTokenExpiresIn = 2;
+    string refreshToken = 3;
+    int32 refreshTokenExpiresIn = 4;
+}
+

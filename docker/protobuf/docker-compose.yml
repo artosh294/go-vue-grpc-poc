@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+
+  build-go:
+    build: protobuf-go
+    volumes:
+      - ../../:/app
+    working_dir: /app
+    command: sh ./protobuf/scripts/build-go.sh
+
+  build-ts:
+    build: protobuf-ts
+    volumes:
+      - ../../:/app
+    working_dir: /app
+    command: sh ./protobuf/scripts/build-ts.sh

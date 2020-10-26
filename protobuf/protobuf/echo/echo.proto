@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/artosh294/grpc-scratchpads/grpc-poc/go/protobuf/echo";
+option go_package = "github.com/artosh294/go-vue-grpc-poc/go/protobuf/echo";
 
 package echo;
 
