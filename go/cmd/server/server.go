@@ -25,8 +25,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/artosh294/grpc-scratchpads/grpc-poc/go/protobuf/echo"
-	pb "github.com/artosh294/grpc-scratchpads/grpc-poc/go/protobuf/helloworld"
+	"github.com/artosh294/go-vue-grpc-poc/protobuf/echo"
+	pb "github.com/artosh294/go-vue-grpc-poc/protobuf/helloworld"
 	"google.golang.org/grpc"
 )
 
