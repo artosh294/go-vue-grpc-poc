@@ -27,7 +27,9 @@ export default defineComponent({
 
             const request = new EchoRequest()
             request.setName(this.msg + (new Date).toString())
-            const response = await client.echo(request, {})
+            const response = await client.echo(request, {
+                Authorization: "bearer hogehoge fugafuga",
+            })
             this.response = response.getMessage()
 
         }

@@ -25,6 +25,8 @@ import (
 	"log"
 	"net"
 
+	"google.golang.org/grpc/metadata"
+
 	"github.com/artosh294/go-vue-grpc-poc/protobuf/echo"
 	pb "github.com/artosh294/go-vue-grpc-poc/protobuf/helloworld"
 	"google.golang.org/grpc"
@@ -47,6 +49,7 @@ func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloRe
 
 func (s *server) SayHelloAgain(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	log.Printf("Received: %v", in.GetName())
+	log.Printf("")
 	return &pb.HelloReply{Message: "Hello Again " + in.GetName()}, nil
 }
 
@@ -56,6 +59,10 @@ type echoServer struct {
 
 func (s *echoServer) Echo(ctx context.Context, in *echo.EchoRequest) (*echo.EchoResponse, error) {
 	log.Printf("Received: %v", in.GetName())
+	md, ok := metadata.FromIncomingContext(ctx)
+	auth := md.Get("Authorization")
+	log.Println("ok", ok)
+	log.Println("Authorization", auth)
 	return &echo.EchoResponse{Message: "Message: " + in.GetName()}, nil
 }
 
