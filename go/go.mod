@@ -3,6 +3,7 @@ module github.com/artosh294/go-vue-grpc-poc
 go 1.15
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/golang/protobuf v1.4.2
 	google.golang.org/grpc v1.32.0
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.0.0 // indirect
