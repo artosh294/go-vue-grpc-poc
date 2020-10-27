@@ -25,12 +25,10 @@ import (
 	"log"
 	"net"
 
-	"google.golang.org/grpc/metadata"
-
-	"github.com/artosh294/go-vue-grpc-poc/go/pkg/server"
+	"github.com/artosh294/go-vue-grpc-poc/pkg/server"
+	"github.com/artosh294/go-vue-grpc-poc/protobuf/authentication"
 	"github.com/artosh294/go-vue-grpc-poc/protobuf/echo"
 	pb "github.com/artosh294/go-vue-grpc-poc/protobuf/helloworld"
-	"github.com/artosh294/go-vue-grpc-poc/protobuf/protobuf/authentication"
 	"google.golang.org/grpc"
 )
 
@@ -55,19 +53,6 @@ func (s *greeterServer) SayHelloAgain(ctx context.Context, in *pb.HelloRequest) 
 	return &pb.HelloReply{Message: "Hello Again " + in.GetName()}, nil
 }
 
-type echoServer struct {
-	echo.UnimplementedEchoServer
-}
-
-func (s *echoServer) Echo(ctx context.Context, in *echo.EchoRequest) (*echo.EchoResponse, error) {
-	log.Printf("Received: %v", in.GetName())
-	md, ok := metadata.FromIncomingContext(ctx)
-	auth := md.Get("Authorization")
-	log.Println("ok", ok)
-	log.Println("Authorization", auth)
-	return &echo.EchoResponse{Message: "Message: " + in.GetName()}, nil
-}
-
 func main() {
 	fmt.Println("launch GRPC Server!!!")
 	lis, err := net.Listen("tcp", port)
@@ -76,7 +61,7 @@ func main() {
 	}
 	s := grpc.NewServer()
 	pb.RegisterGreeterServer(s, &greeterServer{})
-	echo.RegisterEchoServer(s, &echoServer{})
+	echo.RegisterEchoServer(s, &server.EchoServer{})
 	authentication.RegisterAuthenticationServer(s, &server.AuthenticationServer{})
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

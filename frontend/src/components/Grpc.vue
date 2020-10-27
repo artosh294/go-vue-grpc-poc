@@ -8,8 +8,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { EchoClient } from '../protobuf/echo/EchoServiceClientPb'
-import { EchoRequest } from '../protobuf/echo/echo_pb'
+import { EchoService } from '../service/EchoService'
 
 export default defineComponent({
     data() {
@@ -20,18 +19,9 @@ export default defineComponent({
     },
     methods: {
         async echo() {
-            console.log("echo")
-
-            const hostname = "http://localhost:8001"
-            const client = new EchoClient(hostname)
-
-            const request = new EchoRequest()
-            request.setName(this.msg + (new Date).toString())
-            const response = await client.echo(request, {
-                Authorization: "bearer hogehoge fugafuga",
-            })
-            this.response = response.getMessage()
-
+            const echoService = new EchoService()
+            const respone = await echoService.echo(this.msg)
+            this.response = respone.message
         }
     }
 })

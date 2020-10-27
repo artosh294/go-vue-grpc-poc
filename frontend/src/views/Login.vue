@@ -12,8 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { AuthenticationClient } from "../protobuf/authentication/AuthenticationServiceClientPb"
-import { LoginRequest } from "../protobuf/authentication/authentication_pb"
+import { AuthenticationService } from '../service/AuthenticationService'
 
 export default defineComponent({
   name: 'Login',
@@ -28,17 +27,13 @@ export default defineComponent({
   methods: {
     async login() {
       console.log("login")
+      const service = new AuthenticationService()
 
-      const hostname = "http://localhost:8001"
-      const client = new AuthenticationClient(hostname)
-      const request = new LoginRequest()
-      request.setLoginid(this.id)
-      request.setPassword(this.password)
+      await service.login(this.id, this.password)
 
-      const response = await client.login(request, {
+      this.$router.push({
+        name: 'Home'
       })
-
-      console.log(response)
     }
   },
 });

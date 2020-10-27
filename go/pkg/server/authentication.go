@@ -16,7 +16,7 @@ type AuthenticationServer struct {
 	authentication.UnimplementedAuthenticationServer
 }
 
-func (s *AuthenticationServer) Login(ctx context.Context, in *authentication.LoginRequest) (*authentication.LoginReply, error) {
+func (s *AuthenticationServer) Login(ctx context.Context, in *authentication.LoginRequest) (*authentication.LoginResponse, error) {
 
 	loginId := in.GetLoginId()
 	password := in.GetPassword()
@@ -41,14 +41,14 @@ func (s *AuthenticationServer) Login(ctx context.Context, in *authentication.Log
 
 	fmt.Println(accessTokenString, refreshTokenString)
 
-	reply := authentication.LoginReply{
+	response := authentication.LoginResponse{
 		AccessToken:  accessTokenString,
 		RefreshToken: refreshTokenString,
 	}
 
-	return reply, nil
+	return &response, nil
 }
 
-func (s *AuthenticationServer) RefreshAccessToken(ctx context.Context, in *authentication.RefreshAccessTokenRequest) (*authentication.RefreshAccessTokenReply, error) {
+func (s *AuthenticationServer) RefreshAccessToken(ctx context.Context, in *authentication.RefreshAccessTokenRequest) (*authentication.RefreshAccessTokenResponse, error) {
 	return nil, nil
 }
