@@ -37,17 +37,16 @@ export class AuthenticationService {
         const client = new AuthenticationClient(hostname)
         const request = new RefreshAccessTokenRequest()
 
-
         const tokenService = new TokenService()
-        const accessToken = await tokenService.getAccessToken()
-        request.setRefreshtoken(accessToken.token);
+        const refreshToken = await tokenService.getRefreshToken()
+        request.setRefreshtoken(refreshToken.token);
 
         const response = await client.refreshAccessToken(request, {
             // Authentication: "",
         })
 
         return {
-            accessToken: response.getRefreshtoken(),
+            accessToken: response.getAccesstoken(),
         }
     }
 

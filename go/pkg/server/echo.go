@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"log"
 
+	codes "google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
+	status "google.golang.org/grpc/status"
 
 	"github.com/artosh294/go-vue-grpc-poc/protobuf/echo"
 	jwt "github.com/dgrijalva/jwt-go"
@@ -26,19 +28,19 @@ func (s *EchoServer) Echo(ctx context.Context, in *echo.EchoRequest) (*echo.Echo
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 		}
-		log.Println("aaa")
 		return []byte(SIGNKEY), nil
 	})
 
-	log.Println(err)
+	log.Println(err, token)
 
 	if err != nil {
-		panic(err)
+		// panic(err)
+		return nil, status.Errorf(codes.Unauthenticated, err.Error())
 	}
 
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !ok && !token.Valid {
-		return nil, nil
+		return nil, status.Errorf(codes.Unauthenticated, "Invalid token")
 	}
 
 	fmt.Println(claims)

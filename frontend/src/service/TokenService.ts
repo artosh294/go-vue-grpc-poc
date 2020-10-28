@@ -24,9 +24,11 @@ export class ExpirableToken extends Token {
 
     expired(date: number | null = null): boolean {
         if (date == null) {
-            date = (new Date()).getTime()
+            // getTimeはUnixtimeのミリ秒を返すので、秒に変換
+            date = (new Date()).getTime() / 1000
         }
-        return date < this.exp
+        // return date < this.exp
+        return this.exp < date
     }
 }
 
@@ -52,7 +54,7 @@ export class TokenService {
         })
         // 期限切れの場合は更新する
         // 余裕を持って有効期限を比較する（API通信経路のラグを考慮する）
-        const time = (new Date()).getTime() + this.expiredMarginSecond
+        const time = ((new Date()).getTime() / 1000) + this.expiredMarginSecond
         if (token.expired(time)) {
             await this.refreshAccessToken()
 
@@ -61,7 +63,10 @@ export class TokenService {
             if (jwt == null) {
                 throw new InvalidAccessTokenError()
             }
-            token = new AccessToken(jwtDecode(jwt))
+            token = new AccessToken({
+                ...jwtDecode(jwt),
+                token: jwt,
+            })
             if (token.expired()) {
                 throw new InvalidAccessTokenError()
             }
@@ -78,7 +83,6 @@ export class TokenService {
             ...jwtDecode(jwt),
             token: jwt,
         })
-        console.log(2, jwtDecode(jwt), token, token.expired())
         if (token.expired()) {
             throw new InvalidRefreshTokenError()
         }
