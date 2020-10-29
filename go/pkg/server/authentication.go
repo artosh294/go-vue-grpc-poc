@@ -26,6 +26,14 @@ func (s *AuthenticationServer) Login(ctx context.Context, in *authentication.Log
 	fmt.Println("loginId: ", loginId)
 	fmt.Println("password: ", password)
 
+	if loginId != "hkyt" {
+		return nil, status.Errorf(codes.Unauthenticated, "Invalid request")
+	}
+
+	if password != "hkyt" {
+		return nil, status.Errorf(codes.Unauthenticated, "Invalid request")
+	}
+
 	accessToken := jwt.New(jwt.SigningMethodHS256)
 	accessClaims := accessToken.Claims.(jwt.MapClaims)
 	accessClaims["id"] = 123

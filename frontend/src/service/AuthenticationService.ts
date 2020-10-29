@@ -42,7 +42,6 @@ export class AuthenticationService {
         request.setRefreshtoken(refreshToken.token);
 
         const response = await client.refreshAccessToken(request, {
-            // Authentication: "",
         })
 
         return {

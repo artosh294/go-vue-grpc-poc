@@ -20,21 +20,23 @@ export default defineComponent({
   },
   data() {
     return {
-      id: "",
-      password: "",
+      id: "hkyt",
+      password: "hkyt",
     }
   },
   methods: {
     async login() {
       console.log("login")
+      
+      // IDとパスワードを使ってログイン処理をする
       const service = new AuthenticationService()
-
       await service.login(this.id, this.password)
 
+      // ログインできたようだったら、GRPCに移行する
       this.$router.push({
-        name: 'Home'
+        name: 'Grpc'
       })
-    }
-  },
+    },
+  }
 });
 </script>

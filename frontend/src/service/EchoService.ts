@@ -18,7 +18,7 @@ export class EchoService {
         const accessToken = await tokenService.getAccessToken()
 
         const response = await client.echo(request, {
-            Authorization: accessToken.token,
+            ...accessToken.makeBearerHeader(),
         })
 
         return {
