@@ -19,3 +19,18 @@ $ docker-compose up -d
 ```
 http://localhost:8080
 ```
+
+
+grpcのビルド  
+
+Go言語
+```
+$ cd docker/protobuf
+$ docker-compose run build-go
+```
+
+TypeScript
+```
+$ cd docker/protobuf
+$ docker-compose run build-ts
+```

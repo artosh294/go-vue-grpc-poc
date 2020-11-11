@@ -2,7 +2,6 @@ import { LocalStorageKey } from '../configs/LocalStorageKey'
 
 export class AuthenticationRepository {
     static async setAccessTokenJWT(token: string): Promise<void> {
-        console.log('fdasfas')
         localStorage.setItem(LocalStorageKey.AccessTokenJWT, token)
     }
 
@@ -12,7 +11,6 @@ export class AuthenticationRepository {
 
     static async setRefreshTokenJWT(token: string): Promise<void> {
         localStorage.setItem(LocalStorageKey.RefreshTokenJWT, token)
-
     }
 
     static async getRefreshTokenJWT(): Promise<string|null> {
