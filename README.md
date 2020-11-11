@@ -26,11 +26,11 @@ grpcのビルド
 Go言語
 ```
 $ cd docker/protobuf
-$ docker-compose run build-go
+$ docker-compose run --rm build-go
 ```
 
 TypeScript
 ```
 $ cd docker/protobuf
-$ docker-compose run build-ts
+$ docker-compose run --rm build-ts
 ```
