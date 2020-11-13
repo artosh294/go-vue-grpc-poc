@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option go_package = "github.com/artosh294/go-vue-grpc/go/protobuf/chat";
+
+package chat;
+
+// Cilent Streamingに対応していないので注意
+service Chat {
+    // Bidirectional Streaming RPC
+    rpc Chat(stream ChatRequest) returns (stream ChatReply) {}
+    // Server Streaming RPC
+    rpc Spectator(SpectatorRequest) returns (stream ChatReply) {}
+    // Client Streaming RPC
+    rpc Speecher(stream ChatRequest) returns (SpeecherResponse) {}
+
+    // Urary RPC
+    rpc Speak(ChatRequest) returns (SpeakResponse) {}
+}
+
+message ChatRequest {
+    string room = 1;
+    string message = 2;
+}
+
+message ChatReply {
+    string room = 1;
+    string date = 2;
+    string name = 3;
+    string message = 4;
+}
+
+message SpectatorRequest {
+    string room = 1;
+}
+
+message SpeecherResponse {
+}
+
+message SpeakResponse {
+}
