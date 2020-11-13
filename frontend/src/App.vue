@@ -3,7 +3,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/login">Login</router-link> |
-    <router-link to="/grpc">Grpc</router-link>
+    <router-link to="/grpc">Grpc</router-link> |
+    <router-link to="/grpcstream">GrpcStream</router-link>
   </div>
   <router-view/>
 </template>

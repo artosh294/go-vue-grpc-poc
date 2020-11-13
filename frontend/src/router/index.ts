@@ -24,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/grpc',
     name: 'Grpc',
     component:() => import('../views/Grpc.vue')
+  },
+  {
+    path: '/grpcstream',
+    name: 'GrpcStream',
+    component:() => import('../views/GrpcStream.vue')
   }
 ]
 

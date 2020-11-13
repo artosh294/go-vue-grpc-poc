@@ -19,8 +19,8 @@ export class LoginRequest extends jspb.Message {
 
 export namespace LoginRequest {
   export type AsObject = {
-    loginid: string,
-    password: string,
+    loginid: string;
+    password: string;
   }
 }
 
@@ -47,10 +47,10 @@ export class LoginResponse extends jspb.Message {
 
 export namespace LoginResponse {
   export type AsObject = {
-    accesstoken: string,
-    accesstokenexpiresin: number,
-    refreshtoken: string,
-    refreshtokenexpiresin: number,
+    accesstoken: string;
+    accesstokenexpiresin: number;
+    refreshtoken: string;
+    refreshtokenexpiresin: number;
   }
 }
 
@@ -68,7 +68,7 @@ export class RefreshAccessTokenRequest extends jspb.Message {
 
 export namespace RefreshAccessTokenRequest {
   export type AsObject = {
-    refreshtoken: string,
+    refreshtoken: string;
   }
 }
 
@@ -95,10 +95,10 @@ export class RefreshAccessTokenResponse extends jspb.Message {
 
 export namespace RefreshAccessTokenResponse {
   export type AsObject = {
-    accesstoken: string,
-    accesstokenexpiresin: number,
-    refreshtoken: string,
-    refreshtokenexpiresin: number,
+    accesstoken: string;
+    accesstokenexpiresin: number;
+    refreshtoken: string;
+    refreshtokenexpiresin: number;
   }
 }
 

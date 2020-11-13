@@ -15,7 +15,7 @@ import { defineComponent } from 'vue';
 import { AuthenticationService } from '../service/AuthenticationService'
 
 export default defineComponent({
-  name: 'Login',
+  name: 'LoginView',
   components: {
   },
   data() {

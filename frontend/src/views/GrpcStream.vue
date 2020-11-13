@@ -1,18 +1,18 @@
 <template>
   <div class="home">
-    <grpc></grpc>
+    <grpc-stream></grpc-stream>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { AuthenticationService } from '../service/AuthenticationService'
-import Grpc from '../components/Grpc.vue';
+import GrpcStream from '../components/GrpcStream.vue';
 
 export default defineComponent({
-  name: 'GrpcView',
+  name: 'GrpcStreamView',
   components: {
-    Grpc,
+    GrpcStream,
   },
 });
 </script>

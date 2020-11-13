@@ -16,7 +16,7 @@ export class EchoRequest extends jspb.Message {
 
 export namespace EchoRequest {
   export type AsObject = {
-    name: string,
+    name: string;
   }
 }
 
@@ -34,7 +34,7 @@ export class EchoResponse extends jspb.Message {
 
 export namespace EchoResponse {
   export type AsObject = {
-    message: string,
+    message: string;
   }
 }
 
