@@ -27,6 +27,7 @@ import (
 
 	"github.com/artosh294/go-vue-grpc-poc/pkg/server"
 	"github.com/artosh294/go-vue-grpc-poc/protobuf/authentication"
+	"github.com/artosh294/go-vue-grpc-poc/protobuf/chat"
 	"github.com/artosh294/go-vue-grpc-poc/protobuf/echo"
 	pb "github.com/artosh294/go-vue-grpc-poc/protobuf/helloworld"
 	"google.golang.org/grpc"
@@ -63,6 +64,7 @@ func main() {
 	pb.RegisterGreeterServer(s, &greeterServer{})
 	echo.RegisterEchoServer(s, &server.EchoServer{})
 	authentication.RegisterAuthenticationServer(s, &server.AuthenticationServer{})
+	chat.RegisterChatServer(s, &server.ChatServer{})
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
